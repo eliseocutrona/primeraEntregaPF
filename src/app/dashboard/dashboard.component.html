@@ -1,0 +1,36 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <ul>
+      <li>
+        <button class="menu" mat-raised-button color="primary">Alumnos</button>
+      </li>
+      <li>
+        <button class="menu" mat-raised-button color="primary">Clases</button>
+      </li>
+      <li>
+        <button class="menu" mat-raised-button color="primary">Cursos</button>
+      </li>
+    </ul>
+  </mat-drawer>
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary">
+      <button
+        (click)="drawer.toggle()"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <span class="usuario-log">{{ authUser?.nombre }}</span>
+    </mat-toolbar>
+    <main class="contenido">
+
+       <app-login></app-login>
+        <app-alumnos></app-alumnos> 
+      
+    </main>
+  </div>
+</mat-drawer-container>

@@ -1,0 +1,50 @@
+<h1 mat-dialog-title>ABM de alumnos</h1>
+<div mat-dialog-content>
+  <form class="grid formgrid" [formGroup]="alumnosForms">
+    <!--Nombre-->
+    <div class="col-6 field">
+      <mat-form-field class="w-full">
+        <mat-label>Nombre</mat-label>
+        <input [formControl]="nombreControl" type="text" matInput />
+        <mat-error *ngFor="let error of nombreControl.errors | keyvalue">{{
+          error | controlErrorMessages
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <!--Apellido-->
+    <div class="col-6 field">
+      <mat-form-field class="w-full">
+        <mat-label>Apellido</mat-label>
+        <input [formControl]="apellidoControl" type="text" matInput />
+        <mat-error *ngFor="let error of apellidoControl.errors | keyvalue">{{
+          error | controlErrorMessages
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <!--email-->
+    <div class="col-6 field">
+      <mat-form-field class="w-full">
+        <mat-label>Email</mat-label>
+        <input [formControl]="emailControl" type="text" matInput />
+        <mat-error *ngFor="let error of emailControl.errors | keyvalue">{{
+          error | controlErrorMessages
+        }}</mat-error>
+      </mat-form-field>
+    </div>
+    <!--numeroDocumento-->
+    <div class="col-6 field">
+      <mat-form-field class="w-full">
+        <mat-label>Número de documento</mat-label>
+        <input [formControl]="numeroDocumentoControl" type="text" matInput />
+        <mat-error
+          *ngFor="let error of numeroDocumentoControl.errors | keyvalue"
+          >{{ error | controlErrorMessages }}</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button color="primary" mat-dialog-close="">Cancelar</button>
+  <button (click)="guardar()" mat-button [disabled]="alumnosForms.invalid">Guardar</button>
+</div>

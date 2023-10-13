@@ -1,0 +1,48 @@
+<mat-card class="login-card">
+  <mat-card-content>
+    <div class=".center-content">
+      <form [formGroup]="authForm" (ngSubmit)="login()">
+        <mat-form-field class="w-full">
+          <mat-label>Nombre de usuario</mat-label>
+          <input [formControl]="nombreControl" placeholder="Nombre" matInput />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-error *ngFor="let error of nombreControl.errors | keyvalue">{{
+            error | controlErrorMessages
+          }}</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="w-full">
+          <mat-label>Contraseña</mat-label>
+          <!-- <input [formControl]="contrasenaControl" placeholder="contraseña" matInput /> -->
+
+          <input
+            [formControl]="contrasenaControl"
+            matInput
+            [type]="hide ? 'password' : 'text'"
+          />
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+
+          <mat-error
+            *ngFor="let error of contrasenaControl.errors | keyvalue"
+            >{{ error | controlErrorMessages }}</mat-error
+          >
+        </mat-form-field>
+
+        <div class="button-ingresar">
+          <button mat-flat-button color="primary" type="submit" class="button-ingresar"
+          [disabled]="authForm.invalid">
+            Ingresar
+          </button>
+        </div>
+      </form>
+    </div>
+  </mat-card-content>
+</mat-card>

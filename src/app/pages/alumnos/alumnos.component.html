@@ -1,0 +1,78 @@
+<div class="mb-3"><h1 [appFontSize]="20">Listado de alumnos</h1></div>
+
+<button mat-flat-button color="primary" (click)="abrirABMAlumnos()" class="agregar-alumno mb-3">
+  <mat-icon>add</mat-icon>
+  Agregar alumno
+</button>
+
+<mat-form-field class="text-center align-items-center mt-3">
+  <mat-label>Buscar</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ingrese un valor"
+    #input
+  />
+</mat-form-field>
+
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- nombreCompleto Column -->
+    <ng-container matColumnDef="nombreCompleto">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre completo</th>
+      <td mat-cell *matCellDef="let row">{{ row | nombreCompleto }}</td>
+    </ng-container>
+
+    <!-- email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+    </ng-container>
+
+    <!-- numeroDocumento Column -->
+    <ng-container matColumnDef="numeroDocumento">
+      <th mat-header-cell *matHeaderCellDef>Número de documento</th>
+      <td mat-cell *matCellDef="let row">{{ row.numeroDocumento }}</td>
+    </ng-container>
+
+    <!-- fechaDeAlta Column -->
+    <ng-container matColumnDef="fechaDeAlta">
+      <th mat-header-cell *matHeaderCellDef>Fecha de alta</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.fechaDeAlta | date : "dd/MM/YYYY" }}
+      </td>
+    </ng-container>
+
+    <!-- opciones Column -->
+    <ng-container matColumnDef="opciones" >
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let row">
+        <button
+          mat-icon-button
+          class="opciones-icon-delete "
+          aria-label="Example icon-button with heart icon"
+          (click)="eliminar($event)"
+          value='{{ row.numeroDocumento }}'
+        >
+          <mat-icon >delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No se encontraron datos que contengan "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Selecciona la página"
+  >
+  </mat-paginator>
+</div>
