@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ProyectoFinal": {
+    "primeraEntregaPF": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ProyectoFinal:build:production"
+              "browserTarget": "primeraEntregaPF:build:production"
             },
             "development": {
-              "browserTarget": "ProyectoFinal:build:development"
+              "browserTarget": "primeraEntregaPF:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ProyectoFinal:build"
+            "browserTarget": "primeraEntregaPF:build"
           }
         },
         "test": {
