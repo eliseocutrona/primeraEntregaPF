@@ -101,6 +101,78 @@ export class AlumnosComponent implements AfterViewInit {
       numeroDocumento: 10101010,
       fechaDeAlta: new Date(),
     },
+
+    {
+      nombre: 'Usuario11',
+      apellido: 'Apellido11',
+      email: 'Usuario11@hotmail.com',
+      numeroDocumento: 11111111,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario12',
+      apellido: 'Apellido12',
+      email: 'Usuario12@hotmail.com',
+      numeroDocumento: 11111112,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario13',
+      apellido: 'Apellido13',
+      email: 'Usuario13@hotmail.com',
+      numeroDocumento: 11111113,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario14',
+      apellido: 'Apellido14',
+      email: 'Usuario14@hotmail.com',
+      numeroDocumento: 11111114,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario15',
+      apellido: 'Apellido15',
+      email: 'Usuario15@hotmail.com',
+      numeroDocumento: 11111115,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario16',
+      apellido: 'Apellido16',
+      email: 'Usuario16@hotmail.com',
+      numeroDocumento: 11111116,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario17',
+      apellido: 'Apellido17',
+      email: 'Usuario17@hotmail.com',
+      numeroDocumento: 11111117,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario18',
+      apellido: 'Apellido18',
+      email: 'Usuario18@hotmail.com',
+      numeroDocumento: 11111118,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario19',
+      apellido: 'Apellido19',
+      email: 'Usuario19@hotmail.com',
+      numeroDocumento: 11111119,
+      fechaDeAlta: new Date(),
+    },
+    {
+      nombre: 'Usuario20',
+      apellido: 'Apellido20',
+      email: 'Usuario20@hotmail.com',
+      numeroDocumento: 11111120,
+      fechaDeAlta: new Date(),
+    }
+
   ];
 
   dataSource = new MatTableDataSource(this.alumno);
