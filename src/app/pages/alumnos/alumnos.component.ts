@@ -1,8 +1,8 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, Inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { AbmAlumnosComponent } from './abm-alumnos/abm-alumnos.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogConfirmacionComponent } from 'src/app/shared/dialog/dialog-confirmacion/dialog-confirmacion.component';
 
 export interface alumnos {
@@ -171,8 +171,7 @@ export class AlumnosComponent implements AfterViewInit {
       email: 'Usuario20@hotmail.com',
       numeroDocumento: 11111120,
       fechaDeAlta: new Date(),
-    }
-
+    },
   ];
 
   dataSource = new MatTableDataSource(this.alumno);
@@ -198,31 +197,48 @@ export class AlumnosComponent implements AfterViewInit {
         ];
       }
     });
-
   }
+
   nuevoArray: alumnos[] = [];
+
+  editar(alumno: alumnos): void {
+    const dialogRef = this.matDialog.open(AbmAlumnosComponent, {
+      data: { ...alumno }, // Pasa una copia del objeto alumno para la edición
+    });
+
+    dialogRef.afterClosed().subscribe((nuevoAlumno: alumnos) => {
+      if (nuevoAlumno) {
+        // Encuentra y actualiza el alumno en el dataSource.data
+        const indice = this.dataSource.data.findIndex(
+          (a) => a.numeroDocumento === nuevoAlumno.numeroDocumento
+        );
+        this.dataSource.data[indice] = nuevoAlumno;
+        this.dataSource._updateChangeSubscription(); // Notifica a MatTableDataSource sobre el cambio
+      }
+    });
+  }
+
   eliminar(ev: Event): void {
     let docAlumnoEliminar: number;
     docAlumnoEliminar = Number((ev.currentTarget as HTMLButtonElement)?.value);
     this.nuevoArray = [];
-    const dialogRef = this.matDialog.open(DialogConfirmacionComponent,{
-      data:{
-          message: 'Está seguro que desea eliminar el registro del empleado con número de documento '+docAlumnoEliminar+'?'
-      }
-      });
-      dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-        if (confirmed) {
-          for (let elemento of this.dataSource.data) {
-            if (elemento.numeroDocumento != docAlumnoEliminar) {
-              this.nuevoArray = [
-                ...this.nuevoArray,
-                elemento,
-              ];
-            }
-          }
-          this.dataSource.data = [...this.nuevoArray];
-        }
+    const dialogRef = this.matDialog.open(DialogConfirmacionComponent, {
+      data: {
+        message:
+          'Está seguro que desea eliminar el registro del empleado con número de documento ' +
+          docAlumnoEliminar +
+          '?',
+      },
     });
-
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        for (let elemento of this.dataSource.data) {
+          if (elemento.numeroDocumento != docAlumnoEliminar) {
+            this.nuevoArray = [...this.nuevoArray, elemento];
+          }
+        }
+        this.dataSource.data = [...this.nuevoArray];
+      }
+    });
   }
 }

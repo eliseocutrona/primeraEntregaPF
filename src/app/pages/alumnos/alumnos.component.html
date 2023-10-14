@@ -1,6 +1,11 @@
 <div class="mb-3"><h1 [appFontSize]="20">Listado de alumnos</h1></div>
 
-<button mat-flat-button color="primary" (click)="abrirABMAlumnos()" class="agregar-alumno mb-3">
+<button
+  mat-flat-button
+  color="primary"
+  (click)="abrirABMAlumnos()"
+  class="agregar-alumno mb-3"
+>
   <mat-icon>add</mat-icon>
   Agregar alumno
 </button>
@@ -14,7 +19,6 @@
     #input
   />
 </mat-form-field>
-
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
@@ -45,17 +49,25 @@
     </ng-container>
 
     <!-- opciones Column -->
-    <ng-container matColumnDef="opciones" >
+    <ng-container matColumnDef="opciones">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let row">
         <button
           mat-icon-button
-          class="opciones-icon-delete "
-          aria-label="Example icon-button with heart icon"
-          (click)="eliminar($event)"
-          value='{{ row.numeroDocumento }}'
+          (click)="editar(row)"
+          aria-label="Editar alumno"
         >
-          <mat-icon >delete</mat-icon>
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          class="opciones-icon-delete"
+          aria-label="Eliminar alumno"
+          (click)="eliminar($event)"
+          value="{{ row.numeroDocumento }}"
+        >
+          <mat-icon>delete</mat-icon>
         </button>
       </td>
     </ng-container>
